@@ -15,13 +15,12 @@ export function addComment(comment) {
 
 export function addCommentRequest(comment) {
   return (dispatch) => {
-    return callApi('posts', 'post', {
-      post: {
-        name: comment.name,
-        title: comment.title,
+    return callApi('comments', 'post', {
+      comment: {
+        author: comment.author,
         content: comment.content,
       },
-    }).then(res => dispatch(addComment(res.post)));
+    }).then(res => dispatch(addComment(res.comment)));
   };
 }
 

@@ -28,7 +28,7 @@ const CommentReducer = (state = initialState, action) => {
 /* Selectors */
 
 // Get all comments by author
-// export const getComments = (state, author) => state.comments.data.filter(comment => comment.author === author)[0];
+export const getComments = (state, author) => state.comments.data.filter(comment => comment.author === author)[0];
 
 // Export Reducer
 export default CommentReducer;

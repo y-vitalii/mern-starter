@@ -37,20 +37,17 @@ export function editComment(req, res) {
  * @returns void
  */
 export function addComment(req, res) {
-  if (!req.body.comment.name || !req.body.comment.title || !req.body.comment.content) {
+  if (!req.body.comment.author || !req.body.comment.content) {
     res.status(403).end();
   }
 
-  const newPost = new Comment(req.body.comment);
-
+  const newComment = new Comment(req.body.comment);
   // Let's sanitize inputs
-  newPost.title = sanitizeHtml(newPost.title);
-  newPost.name = sanitizeHtml(newPost.name);
-  newPost.content = sanitizeHtml(newPost.content);
-
-  newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
-  newPost.cuid = cuid();
-  newPost.save((err, saved) => {
+  newComment.author = sanitizeHtml(newComment.author);
+  newComment.content = sanitizeHtml(newComment.content);
+  newComment.slug = slug(newComment.title.toLowerCase(), { lowercase: true });
+  newComment.cuid = cuid();
+  newComment.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
     }
